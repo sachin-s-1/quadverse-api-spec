@@ -1,66 +1,376 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
-        "version": "1.0.6",
-        "title": "Swagger Petstore",
-        "termsOfService": "http://swagger.io/terms/",
-        "contact": {
-            "email": "apiteam@swagger.io"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-        }
+    "swagger" : "2.0",
+    "info" : {
+      "description" : "Authentication api's",
+      "version" : "2022-12-27T18:50:28Z",
+      "title" : "dev_auth_api"
     },
-    "host": "petstore.swagger.io",
-    "basePath": "/v2",
-    "tags": [
-        {
-            "name": "pet",
-            "description": "Everything about your Pets",
-            "externalDocs": {
-                "description": "Find out more",
-                "url": "http://swagger.io"
+    "host" : "24vb266tag.execute-api.us-east-1.amazonaws.com",
+    "basePath" : "/dev",
+    "schemes" : [ "https" ],
+    "paths" : {
+      "/api/v1/auth/confirm-forgot-password" : {
+        "post" : {
+          "consumes" : [ "application/json" ],
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "body",
+            "name" : "ConfirmForgotBody",
+            "required" : true,
+            "schema" : {
+              "$ref" : "#/definitions/ConfirmForgotBody"
             }
-        },
-        {
-            "name": "store",
-            "description": "Access to Petstore orders"
-        },
-        {
-            "name": "user",
-            "description": "Operations about user",
-            "externalDocs": {
-                "description": "Find out more about our store",
-                "url": "http://swagger.io"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "200 response",
+              "schema" : {
+                "$ref" : "#/definitions/MessageResponse"
+              },
+              "headers" : {
+                "Access-Control-Allow-Origin" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "400" : {
+              "description" : "400 response",
+              "schema" : {
+                "$ref" : "#/definitions/Error"
+              }
+            },
+            "500" : {
+              "description" : "500 response",
+              "schema" : {
+                "$ref" : "#/definitions/Error"
+              }
             }
+          }
         }
-    ],
-    "schemes": [
-        "https",
-        "http"
-    ],
-    "paths": {},
-    "securityDefinitions": {
-        "api_key": {
-            "type": "apiKey",
-            "name": "api_key",
-            "in": "header"
-        },
-        "petstore_auth": {
-            "type": "oauth2",
-            "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
-            "flow": "implicit",
-            "scopes": {
-                "read:pets": "read your pets",
-                "write:pets": "modify pets in your account"
+      },
+      "/api/v1/auth/forgot-password" : {
+        "post" : {
+          "consumes" : [ "application/json" ],
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "body",
+            "name" : "ForgotPasswordBody",
+            "required" : true,
+            "schema" : {
+              "$ref" : "#/definitions/ForgotPasswordBody"
             }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "200 response",
+              "schema" : {
+                "$ref" : "#/definitions/MessageResponse"
+              },
+              "headers" : {
+                "Access-Control-Allow-Origin" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "400" : {
+              "description" : "400 response",
+              "schema" : {
+                "$ref" : "#/definitions/Error"
+              }
+            },
+            "500" : {
+              "description" : "500 response",
+              "schema" : {
+                "$ref" : "#/definitions/Error"
+              }
+            }
+          }
         }
+      },
+      "/api/v1/auth/signin" : {
+        "post" : {
+          "consumes" : [ "application/json" ],
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "body",
+            "name" : "SigninBody",
+            "required" : true,
+            "schema" : {
+              "$ref" : "#/definitions/SigninBody"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "200 response",
+              "schema" : {
+                "$ref" : "#/definitions/SigninResponse"
+              },
+              "headers" : {
+                "Access-Control-Allow-Origin" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "400" : {
+              "description" : "400 response",
+              "schema" : {
+                "$ref" : "#/definitions/Error"
+              }
+            },
+            "500" : {
+              "description" : "500 response",
+              "schema" : {
+                "$ref" : "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/auth/signout" : {
+        "post" : {
+          "parameters" : [ {
+            "name" : "Authorization",
+            "in" : "header",
+            "required" : true,
+            "type" : "string"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "200 response"
+            },
+            "400" : {
+              "description" : "400 response"
+            },
+            "500" : {
+              "description" : "500 response"
+            }
+          }
+        }
+      },
+      "/api/v1/auth/signup" : {
+        "post" : {
+          "consumes" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "body",
+            "name" : "SignupBody",
+            "required" : true,
+            "schema" : {
+              "$ref" : "#/definitions/SignupBody"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "200 response"
+            },
+            "400" : {
+              "description" : "400 response"
+            },
+            "500" : {
+              "description" : "500 response"
+            }
+          }
+        }
+      },
+      "/api/v1/auth/user" : {
+        "post" : {
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "name" : "Authorization",
+            "in" : "header",
+            "required" : true,
+            "type" : "string"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "200 response",
+              "schema" : {
+                "$ref" : "#/definitions/GetUserResponse"
+              },
+              "headers" : {
+                "Access-Control-Allow-Origin" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "400" : {
+              "description" : "400 response",
+              "schema" : {
+                "$ref" : "#/definitions/Error"
+              }
+            },
+            "500" : {
+              "description" : "500 response",
+              "schema" : {
+                "$ref" : "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/auth/verify-otp" : {
+        "post" : {
+          "consumes" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "body",
+            "name" : "VerifyEmailOtpBody",
+            "required" : true,
+            "schema" : {
+              "$ref" : "#/definitions/VerifyEmailOtpBody"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "200 response"
+            },
+            "400" : {
+              "description" : "400 response"
+            },
+            "500" : {
+              "description" : "500 response"
+            }
+          }
+        }
+      }
     },
-    "definitions": {},
-    "externalDocs": {
-        "description": "Find out more about Swagger",
-        "url": "http://swagger.io"
+    "definitions" : {
+      "ForgotPasswordBody" : {
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          }
+        },
+        "title" : "ForgotInput"
+      },
+      "Empty" : {
+        "type" : "object",
+        "title" : "Empty Schema"
+      },
+      "SignupBody" : {
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          }
+        },
+        "title" : "SignupInput"
+      },
+      "GetUserResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "picture" : {
+            "type" : "string"
+          },
+          "phone_number" : {
+            "type" : "string"
+          },
+          "email_verified" : {
+            "type" : "boolean"
+          },
+          "phone_number_verified" : {
+            "type" : "boolean"
+          },
+          "updated_at" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "title" : "GetUserOutput"
+      },
+      "MessageResponse" : {
+        "type" : "object",
+        "properties" : {
+          "message" : {
+            "type" : "string"
+          }
+        },
+        "title" : "Message Schema"
+      },
+      "SigninBody" : {
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          }
+        },
+        "title" : "SigninOutput"
+      },
+      "Error" : {
+        "type" : "object",
+        "properties" : {
+          "message" : {
+            "type" : "string"
+          }
+        },
+        "title" : "Error Schema"
+      },
+      "ConfirmForgotBody" : {
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "string"
+          }
+        },
+        "title" : "ConfirmForgotInput"
+      },
+      "VerifyEmailOtpBody" : {
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "otp" : {
+            "type" : "string"
+          }
+        },
+        "title" : "VerifyEmailOtpInput"
+      },
+      "SigninResponse" : {
+        "type" : "object",
+        "properties" : {
+          "accessToken" : {
+            "type" : "string"
+          },
+          "userAttributes" : {
+            "type" : "array"
+          }
+        },
+        "title" : "SigninResponse"
+      }
     }
-}
+  }
