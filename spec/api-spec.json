@@ -191,7 +191,7 @@
       }
     },
     "/api/v1/auth/user": {
-      "post": {
+      "get": {
         "produces": ["application/json"],
         "parameters": [
           {
