@@ -1,163 +1,34 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Authentication api's",
-    "version": "2022-12-27T18:50:28Z",
-    "title": "dev_auth_api"
+    "title": "Quadverse",
+    "description": "Quadverse application api's",
+    "version": "2022-12-30T18:50:28Z",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    }
   },
   "host": "24vb266tag.execute-api.us-east-1.amazonaws.com",
   "basePath": "/dev",
-  "schemes": ["https"],
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Api's related to auth service"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
   "paths": {
-    "/api/v1/auth/confirm-forgot-password": {
-      "post": {
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "ConfirmForgotBody",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ConfirmForgotBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200 response",
-            "schema": {
-              "$ref": "#/definitions/MessageResponse"
-            }
-          },
-          "400": {
-            "description": "400 response",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "500": {
-            "description": "500 response",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/auth/forgot-password": {
-      "post": {
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "ForgotPasswordBody",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ForgotPasswordBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200 response",
-            "schema": {
-              "$ref": "#/definitions/MessageResponse"
-            }
-          },
-          "400": {
-            "description": "400 response",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "500": {
-            "description": "500 response",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/auth/signin": {
-      "post": {
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "SigninBody",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/SigninBody"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200 response",
-            "schema": {
-              "$ref": "#/definitions/SigninResponse"
-            }
-          },
-          "400": {
-            "description": "400 response",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "500": {
-            "description": "500 response",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/auth/signout": {
-      "post": {
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200 response",
-            "schema": {
-              "$ref": "#/definitions/MessageResponse"
-            }
-          },
-          "400": {
-            "description": "400 response",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "401": {
-            "description": "401 response",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "500": {
-            "description": "500 response",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
     "/api/v1/auth/signup": {
       "post": {
-        "consumes": ["application/json"],
+        "consumes": [
+          "application/json"
+        ],
+        "tags": [
+          "auth"
+        ],
         "parameters": [
           {
             "in": "body",
@@ -190,15 +61,104 @@
         }
       }
     },
+    "/api/v1/auth/verify-otp": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "tags": [
+          "auth"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "VerifyEmailOtpBody",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VerifyEmailOtpBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/MessageResponse"
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "500 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/signin": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "tags": [
+          "auth"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "SigninBody",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SigninBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/SigninResponse"
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "500 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/api/v1/auth/user": {
       "get": {
-        "produces": ["application/json"],
+        "tags": [
+          "auth"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "Authorization",
             "in": "header",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Access token received in signin api"
           }
         ],
         "responses": {
@@ -229,16 +189,154 @@
         }
       }
     },
-    "/api/v1/auth/verify-otp": {
+    "/api/v1/auth/access-token": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Refresh token received in signin api"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/SigninResponse"
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "500 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/signout": {
       "post": {
-        "consumes": ["application/json"],
+        "tags": [
+          "auth"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Refresh token received in signin api"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/MessageResponse"
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "500 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/forgot-password": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "tags": [
+          "auth"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
-            "name": "VerifyEmailOtpBody",
+            "name": "ForgotPasswordBody",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VerifyEmailOtpBody"
+              "$ref": "#/definitions/ForgotPasswordBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/MessageResponse"
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "500 response",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/confirm-forgot-password": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "tags": [
+          "auth"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ConfirmForgotBody",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfirmForgotBody"
             }
           }
         ],
@@ -403,6 +501,9 @@
           "type": "integer"
         },
         "refreshToken": {
+          "type": "string"
+        },
+        "idToken": {
           "type": "string"
         },
         "tokenType": {
